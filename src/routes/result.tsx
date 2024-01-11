@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { IconContext } from "react-icons";
 import { BsSearch } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
@@ -14,9 +14,11 @@ export default function Result() {
   const { data, error, isLoading } = useGetResult();
   const [records, setRecords] = useState<PostType[]>([]);
 
+  const memoizedData = useMemo(() => data, [data, isLoading, error]);
+
   useEffect(() => {
     handleSearch();
-  }, []);
+  }, [data]);
 
   function handleSearch() {
     // do intext searching
@@ -30,7 +32,6 @@ export default function Result() {
       }
     });
     setRecords(() => result);
-    console.log("result", records);
   }
 
   return (
