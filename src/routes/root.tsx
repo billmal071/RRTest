@@ -13,7 +13,6 @@ export default function Root() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    console.log(userInfo, content);
     const validated = await articleSchema.safeParseAsync({
       userInfo,
       content,
@@ -37,7 +36,7 @@ export default function Root() {
     <>
       <section className="flex justify-center items-center flex-col">
         <h3 className="text-2xl font-bold">Create your article</h3>
-        <form onSubmit={handleSubmit} className="flex flex-col mt-3 w-[500px]">
+        <form onSubmit={handleSubmit} className="flex flex-col mt-3 w-full md:w-[500px]">
           {message && (
             <div role="alert" className="alert alert-warning">
               <svg
