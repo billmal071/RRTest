@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import fetcher from "../http/$http";
 import useSWR from "swr";
 

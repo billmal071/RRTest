@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { IconContext } from "react-icons";
 import { BsSearch } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
@@ -13,8 +13,6 @@ export default function Result() {
 
   const { data, error, isLoading } = useGetResult();
   const [records, setRecords] = useState<PostType[]>([]);
-
-  const memoizedData = useMemo(() => data, [data, isLoading, error]);
 
   useEffect(() => {
     handleSearch();
