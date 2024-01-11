@@ -12,13 +12,11 @@ export default function Result() {
   const val = search.get("search") ?? "";
 
   const { data, error, isLoading } = useGetResult();
-  const [records, setRecords] = useState([] as PostType[]);
-  console.log(records);
-  console.error("error", error);
+  const [records, setRecords] = useState<PostType[]>([]);
 
   useEffect(() => {
-    setRecords(data);
-  }, []);
+    handleSearch();
+  }, [isLoading]);
 
   function handleSearch() {
     // do intext searching
@@ -58,8 +56,8 @@ export default function Result() {
           {!!isLoading && <Loader />}
           {error.usersError && error.postsError && <>error</>}
           <div className="flex flex-wrap justify-center gap-5">
-            {data &&
-              data.slice(35).map((val: PostType) => (
+            {records &&
+              records.map((val: PostType) => (
                 <div key={val.id} className="card w-96 bg-base-100 shadow-xl">
                   <div className="card-body">
                     <h2 className="card-title">{val.title}</h2>
