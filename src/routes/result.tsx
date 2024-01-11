@@ -18,7 +18,7 @@ export default function Result() {
 
   useEffect(() => {
     setRecords(data);
-  }, [val]);
+  }, []);
 
   function handleSearch() {
     // do intext searching
@@ -58,25 +58,16 @@ export default function Result() {
           {!!isLoading && <Loader />}
           {error.usersError && error.postsError && <>error</>}
           <div className="flex flex-wrap justify-center gap-5">
-            {val.length > 1
-              ? records.slice(35).map((val: PostType) => (
-                  <div key={val.id} className="card w-96 bg-base-100 shadow-xl">
-                    <div className="card-body">
-                      <h2 className="card-title">{val.title}</h2>
-                      <h4>Author: {val.user[0].name}</h4>
-                      <p>{val.body}</p>
-                    </div>
+            {data &&
+              data.slice(35).map((val: PostType) => (
+                <div key={val.id} className="card w-96 bg-base-100 shadow-xl">
+                  <div className="card-body">
+                    <h2 className="card-title">{val.title}</h2>
+                    <h4>Author: {val.user[0].name}</h4>
+                    <p>{val.body}</p>
                   </div>
-                ))
-              : data.slice(35).map((val: PostType) => (
-                  <div key={val.id} className="card w-96 bg-base-100 shadow-xl">
-                    <div className="card-body">
-                      <h2 className="card-title">{val.title}</h2>
-                      <h4>Author: {val.user[0].name}</h4>
-                      <p>{val.body}</p>
-                    </div>
-                  </div>
-                ))}
+                </div>
+              ))}
           </div>
         </section>
       </main>
