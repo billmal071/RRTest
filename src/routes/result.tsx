@@ -40,6 +40,11 @@ export default function Result() {
             type="search"
             value={val}
             onChange={e => setSearch({ search: e.target.value })}
+            onKeyDown={e => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
             placeholder="search..."
             className="input-md"
             id="search"
